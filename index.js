@@ -1,9 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 const multer = require('multer');
-const upload = multer();
 
+const upload = multer();
 const app = express();
+
 const port = 8000;
 const notesFilePath = 'notes.json';
 
@@ -31,7 +32,6 @@ app.get('/notes', (req, res) => {
       const notes = JSON.parse(fs.readFileSync(notesFilePath, 'utf8'));
       res.json(notes);
     } catch (error) {
-      // Обробка помилки, якщо файл notes.json не існує або містить некоректний JSON
       console.error('Помилка при отриманні нотаток:', error);
       res.status(500).json([]);
     }
